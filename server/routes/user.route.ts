@@ -12,6 +12,7 @@ import {
   updateProfilePicture,
   getAllUsers,
   updateUserRole,
+  deleteUser,
 } from "../controllers/user.controller";
 import { authorizedRoles, isAuthenticated } from "../middleware/auth";
 const userRouter = express.Router();
@@ -37,6 +38,12 @@ userRouter.put(
   isAuthenticated,
   authorizedRoles("admin"),
   updateUserRole
+);
+userRouter.delete(
+  "/delete-user/:id",
+  isAuthenticated,
+  authorizedRoles("admin"),
+  deleteUser
 );
 
 export default userRouter;
